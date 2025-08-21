@@ -24,7 +24,7 @@ dotenv.config();
 setupGlobalErrorHandlers();
 
 const app = express();
-const PORT = process.env.PORT || 3002;
+const PORT = parseInt(process.env.PORT || '3002', 10);
 
 // Create necessary directories
 const uploadDir = process.env.UPLOAD_PATH || './uploads';
