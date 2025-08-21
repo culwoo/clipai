@@ -17,7 +17,7 @@ import {
   PaymentPlansResponse
 } from '../types/api';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api` : 'http://localhost:3005/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api` : 'https://clipai-production-d8a2.up.railway.app/api';
 
 export class ApiClient {
   private baseUrl: string;
