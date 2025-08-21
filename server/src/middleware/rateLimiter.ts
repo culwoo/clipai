@@ -9,12 +9,19 @@ const redisClient = createClient({
 });
 
 // Connect to Redis with error handling
+let redisConnected = false;
 redisClient.connect().catch((err) => {
-  console.warn('Redis connection failed, falling back to memory store:', err.message);
+  if (!redisConnected) {
+    console.warn('Redis connection failed, falling back to memory store');
+  }
 });
 
 redisClient.on('error', (err) => {
-  console.warn('Redis client error:', err.message);
+  // Only log once, not repeatedly
+  if (!redisConnected) {
+    console.warn('Redis not available, using memory store for rate limiting');
+    redisConnected = true; // Prevent further error logs
+  }
 });
 
 // Rate limit store - use Redis if available, otherwise memory
